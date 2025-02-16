@@ -27,6 +27,7 @@
     "lint": "eslint src",
     "test": "rm -rf .vscode-test/user-data && vscode-test",
 
+    "compile-esbuild": "rm -rf dist && node esbuild.js",
     "watch-eslbuild": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json"
