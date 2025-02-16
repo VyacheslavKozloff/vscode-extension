@@ -20,11 +20,32 @@ async function main() {
       esbuildProblemMatcherPlugin
     ]
   });
+
+  const test_ctx = await esbuild.context({
+    entryPoints: ['src/test/extension.test.ts'],
+    bundle: true,
+    format: 'cjs',
+    minify: production,
+    sourcemap: !production,
+    sourcesContent: false,
+    platform: 'node',
+    outfile: 'dist/test/extension.test.js',
+    external: ['vscode'],
+    logLevel: 'warning',
+    plugins: [
+      /* add to the end of plugins array */
+      esbuildProblemMatcherPlugin
+    ]
+  });
   if (watch) {
     await ctx.watch();
+    await test_ctx.watch();
   } else {
     await ctx.rebuild();
     await ctx.dispose();
+
+    await test_ctx.rebuild();
+    await test_ctx.dispose();
   }
 }
 
