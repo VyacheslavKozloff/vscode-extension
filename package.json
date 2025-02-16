@@ -25,7 +25,7 @@
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src",
-    "test": "vscode-test",
+    "test": "rm -rf .vscode-test/user-data && vscode-test",
 
     "watch-eslbuild": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
