@@ -22,14 +22,14 @@ async function main() {
   });
 
   const test_ctx = await esbuild.context({
-    entryPoints: ['src/test/extension.test.ts'],
+    entryPoints: ['src/test/*.test.ts'],
     bundle: true,
     format: 'cjs',
     minify: production,
     sourcemap: !production,
     sourcesContent: false,
     platform: 'node',
-    outfile: 'dist/test/extension.test.js',
+    outdir: 'dist/test/',
     external: ['vscode'],
     logLevel: 'warning',
     plugins: [
